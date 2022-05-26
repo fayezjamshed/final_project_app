@@ -56,14 +56,15 @@ class _LoginInputState extends State<LoginInput> {
             "assets/panic-logo.png",
             height: MediaQuery.of(context).size.height * 0.35,
           ),
-          TextField(
-                  controller: username,
-                  decoration:
-                      textfielddecoration("Enter User Name", "User Name"))
-              .py(15),
+          // TextField(
+          //         controller: username,
+          //         decoration:
+          //             textfielddecoration("Enter User Name", "User Name")
+          //             );
+          //     .py(15),
           TextField(
             controller: password,
-            decoration: textfielddecoration("Enter Password", "Password"),
+            // decoration: textfielddecoration("Enter Password", "Password"),
           ),
           SizedBox(
             height: 20,

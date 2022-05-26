@@ -1,0 +1,4 @@
+#Wed May 25 17:39:03 GMT-08:00 2022
+base.0=E\:\\fyp\\Final year project\\final_project_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
