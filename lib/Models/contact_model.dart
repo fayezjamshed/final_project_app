@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 class ContactDetail {
   List<Contacts>? contacts;
 
-  ContactDetail({required this.contacts});
+  ContactDetail({this.contacts});
 
   ContactDetail.fromJson(Map<String, dynamic> json) {
     if (json['contacts'] != null) {
@@ -38,4 +40,19 @@ class Contacts {
     data['phone'] = this.phone;
     return data;
   }
+
+  static Map<String, dynamic> toMap(Contacts contacts) => {
+        'name': contacts.name,
+        'phone': contacts.phone,
+      };
+
+  static String encode(List<Contacts> contacts) => json.encode(
+        contacts
+            .map<Map<String, dynamic>>((contacts) => Contacts.toMap(contacts))
+            .toList(),
+      );
+  static List<Contacts> decode(String contacts) =>
+      (json.decode(contacts) as List<dynamic>)
+          .map<Contacts>((item) => Contacts.fromJson(item))
+          .toList();
 }

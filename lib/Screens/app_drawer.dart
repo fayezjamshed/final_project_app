@@ -46,34 +46,34 @@ class _AppDrawerState extends State<AppDrawer> {
         title: "Settings".text.xl2.make(),
         // tileColor: Vx.gray200,
       ),
-      ListTile(
-        leading: Icon(
-          Icons.dark_mode,
-          size: 40,
-        ),
-        title: "Dark Mode".text.xl2.make(),
-        trailing: Switch(
-          onChanged: toggleDarkMod,
-          value: isSwitched,
-          activeColor: Colors.black,
-          activeTrackColor: Colors.grey,
-          // inactiveThumbColor: Colors.redAccent,
-          // inactiveTrackColor: Colors.orange,
-        ),
-        // tileColor: Vx.gray200,
-      ),
-      ListTile(
-        onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => HelpScreen()));
-        },
-        leading: Icon(
-          Icons.help_outline_sharp,
-          size: 40,
-        ),
-        title: "Help".text.xl2.make(),
-        // tileColor: Vx.gray200,
-      ),
+      // ListTile(
+      //   leading: Icon(
+      //     Icons.dark_mode,
+      //     size: 40,
+      //   ),
+      //   title: "Dark Mode".text.xl2.make(),
+      //   trailing: Switch(
+      //     onChanged: toggleDarkMod,
+      //     value: isSwitched,
+      //     activeColor: Colors.black,
+      //     activeTrackColor: Colors.grey,
+      //     // inactiveThumbColor: Colors.redAccent,
+      //     // inactiveTrackColor: Colors.orange,
+      //   ),
+      //   // tileColor: Vx.gray200,
+      // ),
+      // ListTile(
+      //   onTap: () {
+      //     Navigator.of(context)
+      //         .push(MaterialPageRoute(builder: (context) => HelpScreen()));
+      //   },
+      //   leading: Icon(
+      //     Icons.help_outline_sharp,
+      //     size: 40,
+      //   ),
+      //   title: "Help".text.xl2.make(),
+      //   // tileColor: Vx.gray200,
+      // ),
       ListTile(
         onTap: () {
           Navigator.of(context)

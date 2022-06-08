@@ -1,6 +1,10 @@
 # This is a generated file; do not edit or check into version control.
+firebase_auth=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-3.3.19\\
+firebase_auth_web=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-3.3.16\\
+firebase_core=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-1.17.1\\
+firebase_core_web=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-1.6.4\\
 flutter_plugin_android_lifecycle=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-2.0.5\\
-google_maps_flutter=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_maps_flutter-2.1.1\\
+google_maps_flutter=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_maps_flutter-2.1.6\\
 path_provider_linux=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-2.1.6\\
 path_provider_windows=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-2.0.6\\
 shared_preferences=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-2.0.15\\

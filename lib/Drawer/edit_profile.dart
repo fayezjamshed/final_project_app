@@ -1,6 +1,9 @@
+import 'dart:convert';
+import 'package:final_project_app/Models/register_data_model.dart';
 import 'package:final_project_app/Screens/routes.dart';
 import 'package:final_project_app/Widget/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../httpservice.dart';
@@ -37,9 +40,34 @@ class _EditProfileFieldState extends State<EditProfileField> {
   final cnic = TextEditingController();
   final phoneNumber = TextEditingController();
   final email = TextEditingController();
-  final password = TextEditingController();
-  final confirmPassword = TextEditingController();
+  final distric = TextEditingController();
+  final age = TextEditingController();
+  final address = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late SharedPreferences prefs;
+  // RegisterData? registerData;
+  @override
+  void initState() {
+    // TODO: implement initState
+    initPrefs();
+    super.initState();
+  }
+
+  void initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> register = jsonDecode(prefs.getString("register")!);
+    RegisterData registerData = RegisterData.fromJson(register);
+    print(registerData.name);
+    name.value = TextEditingValue(text: "${registerData.name}");
+    cnic.value = TextEditingValue(text: "${registerData.cnic}");
+    email.value = TextEditingValue(text: "${registerData.email}");
+    phoneNumber.value = TextEditingValue(text: "${registerData.phone}");
+    distric.value = TextEditingValue(text: "${registerData.distric}");
+    age.value = TextEditingValue(text: "${registerData.age}");
+    address.value = TextEditingValue(text: "${registerData.address}");
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,7 +129,7 @@ class _EditProfileFieldState extends State<EditProfileField> {
                       keyboardType: TextInputType.number)
                   .py(10),
               TextFormField(
-                controller: password,
+                controller: distric,
                 decoration: textfielddecoration(
                     "Distric", "Distric", Icon(Icons.location_on)),
                 validator: (value) {
@@ -112,7 +140,7 @@ class _EditProfileFieldState extends State<EditProfileField> {
                 },
               ).py(10),
               TextFormField(
-                controller: confirmPassword,
+                controller: age,
                 decoration:
                     textfielddecoration("Enter Age", " Age", Icon(null)),
                 validator: (value) {
@@ -123,7 +151,7 @@ class _EditProfileFieldState extends State<EditProfileField> {
                 },
               ).py(10),
               TextFormField(
-                controller: confirmPassword,
+                controller: address,
                 decoration: textfielddecoration(
                     "Enter Address", "Address", Icon(Icons.location_on)),
                 validator: (value) {

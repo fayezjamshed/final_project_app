@@ -21,9 +21,9 @@ Widget appBarMain(String title) {
     flexibleSpace: Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.centerRight,
-              colors: <Color>[Colors.purple.shade600, Colors.red])),
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: <Color>[Colors.blue, Colors.red])),
     ),
     title: title.text.xl3.bold.make(),
     leadingWidth: 80,

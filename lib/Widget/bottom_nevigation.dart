@@ -48,7 +48,7 @@ class _BottomNevigationsState extends State<BottomNevigations> {
               gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [Colors.blue, Colors.purple, Colors.red.shade500])),
+                  colors: [Colors.blue, Colors.red.shade500])),
           child: BottomNavigationBar(
             backgroundColor: Colors.transparent,
             type: BottomNavigationBarType.fixed,
@@ -74,6 +74,7 @@ class _BottomNevigationsState extends State<BottomNevigations> {
               ),
             ],
             currentIndex: _selectedIndex,
+            unselectedItemColor: Colors.grey.shade400,
             selectedItemColor: Colors.white,
             onTap: _onItemTapped,
           ),

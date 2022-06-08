@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:final_project_app/Models/register_data_model.dart';
+import 'package:final_project_app/Screens/otp_screen.dart';
 import 'package:final_project_app/Screens/routes.dart';
 import 'package:final_project_app/Widget/widget.dart';
 import 'package:final_project_app/httpservice.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -28,23 +33,53 @@ class SignUpField extends StatefulWidget {
 
 class _SignUpFieldState extends State<SignUpField> {
   HttpService? https;
+  Register? register;
+  RegisterData? registerData;
   final name = TextEditingController();
   final cnic = TextEditingController();
   final phoneNumber = TextEditingController();
   final email = TextEditingController();
-  final password = TextEditingController();
-  final confirmPassword = TextEditingController();
+  final distric = TextEditingController();
+  final age = TextEditingController();
+  final address = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late SharedPreferences prefs;
 
-  Future postdatacall() async {
-    await https!.signUprequest(
-        name.text, cnic.text, email.text, phoneNumber.text, password.text);
-  }
+  // Future postdatacall() async {
+  //   await https!.signUprequest(
+  //       name.text, cnic.text, email.text, phoneNumber.text, password.text);
+  // }
 
   @override
   void initState() {
     https = HttpService();
+
     super.initState();
+  }
+
+  saveData() async {
+    // ContactDetail contactDetail= c;
+    prefs = await SharedPreferences.getInstance();
+    RegisterData registerData = RegisterData(
+        address: address.text,
+        age: age.text,
+        cnic: cnic.text,
+        distric: distric.text,
+        email: email.text,
+        name: name.text,
+        phone: phoneNumber.text);
+    // register?.data?.name = name.text;
+    // register?.data?.cnic = cnic.text;
+    // register?.data?.email = email.text;
+    // register?.data?.address = address.text;
+    // register?.data?.phone = phoneNumber.text;
+    // register?.data?.distric = distric.text;
+    // print(register?.data?.name);
+
+    String registerjson = jsonEncode(registerData);
+    prefs.setString("register", registerjson);
+
+    // ContactDetail contactDetail = ContactDetail(contacts: contacts);
   }
 
   @override
@@ -55,7 +90,10 @@ class _SignUpFieldState extends State<SignUpField> {
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.red.shade700, Colors.blue, Colors.red.shade700])),
+              colors: [
+            Colors.red.shade900,
+            Colors.blue,
+          ])),
       child: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -108,7 +146,7 @@ class _SignUpFieldState extends State<SignUpField> {
                       keyboardType: TextInputType.number)
                   .py(10),
               TextFormField(
-                controller: password,
+                controller: distric,
                 decoration: textfielddecoration(
                     "Distric", "Distric", Icon(Icons.location_on)),
                 validator: (value) {
@@ -119,7 +157,7 @@ class _SignUpFieldState extends State<SignUpField> {
                 },
               ).py(10),
               TextFormField(
-                controller: confirmPassword,
+                controller: age,
                 decoration:
                     textfielddecoration("Enter Age", " Age", Icon(null)),
                 validator: (value) {
@@ -130,7 +168,7 @@ class _SignUpFieldState extends State<SignUpField> {
                 },
               ).py(10),
               TextFormField(
-                controller: confirmPassword,
+                controller: address,
                 decoration: textfielddecoration(
                     "Enter Address", "Address", Icon(Icons.location_on)),
                 validator: (value) {
@@ -148,7 +186,14 @@ class _SignUpFieldState extends State<SignUpField> {
                 onTap: () {
                   // postdatacall();
                   // if (_formKey.currentState!.validate()) {
-                  Navigator.pushNamed(context, MyRoutes.homeroute);
+                  saveData();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) =>
+                              OtpScreen(phone_no: phoneNumber.text))));
+                  // Navigator.pushNamed(context, MyRoutes.homeroute);
+
                   // postdatacall();
                   // }
                 },
