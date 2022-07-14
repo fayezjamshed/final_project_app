@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">328891202740-qr85ch1ki1cm0lb7qor49ek6ca4or7nd.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">328891202740</string>
+    <string name="google_api_key" translatable="false">AIzaSyD1gsyXxkF1MYcEz_EmuhiD3WFDTR-WHbw</string>
+    <string name="google_app_id" translatable="false">1:328891202740:android:42629a1fbac7532ca4ebe1</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD1gsyXxkF1MYcEz_EmuhiD3WFDTR-WHbw</string>
+    <string name="google_storage_bucket" translatable="false">panicalertpublic.appspot.com</string>
+    <string name="project_id" translatable="false">panicalertpublic</string>
+</resources>
