@@ -45,10 +45,18 @@ class _SignUpFieldState extends State<SignUpField> {
   final _formKey = GlobalKey<FormState>();
   late SharedPreferences prefs;
 
-  // Future postdatacall() async {
-  //   await https!.signUprequest(
-  //       name.text, cnic.text, email.text, phoneNumber.text, password.text);
-  // }
+  Future postdatacall() async {
+    Map data = {
+      'address': address.text,
+      'age': age.text,
+      'cnic': cnic.text,
+      'distric': distric.text,
+      'email': email.text,
+      'name': name.text,
+      'phone': phoneNumber.text
+    };
+    await https!.signUprequest(data);
+  }
 
   @override
   void initState() {
@@ -68,13 +76,6 @@ class _SignUpFieldState extends State<SignUpField> {
         email: email.text,
         name: name.text,
         phone: phoneNumber.text);
-    // register?.data?.name = name.text;
-    // register?.data?.cnic = cnic.text;
-    // register?.data?.email = email.text;
-    // register?.data?.address = address.text;
-    // register?.data?.phone = phoneNumber.text;
-    // register?.data?.distric = distric.text;
-    // print(register?.data?.name);
 
     String registerjson = jsonEncode(registerData);
     prefs.setString("register", registerjson);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:lottie/lottie.dart';
+import 'package:just_audio/just_audio.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,11 +15,41 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
+  late AudioPlayer player;
+
   double scale = 0.8;
   bool _isplaying = false;
   double _width = 150;
   double _height = 150;
   bool animateContainer = false;
+  PermissionStatus? _permissionGranted;
+  Location location = Location();
+  LocationData? _currentPosition;
+
+  void getLocation() async {
+    // Location location = new Location();
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    } else {
+      _currentPosition = await location.getLocation();
+      setState(() {
+        print(_currentPosition?.latitude);
+        print(_currentPosition?.longitude);
+      });
+      // currentLocation.onLocationChanged.listen((LocationData loc) {
+      //   print(loc.latitude);
+      //   print(loc.longitude);
+      //   if (this.mounted) {
+      //     // check whether the state object is in tree
+      //     setState(() {});
+      //   }
+      // });
+    }
+  }
 
   @override
   void initState() {
@@ -27,6 +59,8 @@ class _HomeScreenState extends State<HomeScreen>
     );
     // _controller.addListener(() {});
     _animation = Tween<double>(begin: 1, end: 0.35).animate(_controller);
+    player = AudioPlayer();
+
     // _animation = CurvedAnimation(
     //   parent: _controller,
     //   curve: Curves.fastOutSlowIn,
@@ -53,13 +87,19 @@ class _HomeScreenState extends State<HomeScreen>
               borderRadius: BorderRadius.circular(200)),
           child: InkWell(
             borderRadius: BorderRadius.circular(200),
-            onTap: () {
+            onTap: () async {
+              await player.setAsset('assets/audio/Police.mp3');
+              player.setVolume(0.1);
               if (_isplaying) {
                 _controller.reset();
                 _isplaying = !_isplaying;
+                player.stop();
               } else {
                 _controller.repeat(reverse: true);
                 _isplaying = !_isplaying;
+
+                player.play();
+                getLocation();
               }
             },
             child: Container(

@@ -1,6 +1,7 @@
 import 'package:final_project_app/Screens/home_screen.dart';
 import 'package:final_project_app/Screens/routes.dart';
 import 'package:final_project_app/Services/auth_service.dart';
+import 'package:final_project_app/Widget/bottom_nevigation.dart';
 import 'package:final_project_app/Widget/widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-  // AuthService _authService = AuthService();
+  AuthService _authService = AuthService();
   FirebaseAuth _auth = FirebaseAuth.instance;
   String? verificationCode;
   TextEditingController otpController = TextEditingController();
@@ -56,7 +57,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   void initState() {
     registerUser();
-    // _authService.registerUser("${widget.phone_no}", context);
+    _authService.registerUser("${widget.phone_no}", context);
     // verifiCationId = _authService.verificationId;
 
     // TODO: implement initState

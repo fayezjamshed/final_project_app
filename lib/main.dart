@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       // initialRoute: MyRoutes.loginroute,
       home: AnimatedSplashScreen(
         splash: SplashScreen(),
-        nextScreen: SignUpScreen(),
+        nextScreen: BottomNevigations(),
         duration: 1000,
         backgroundColor: Colors.black,
       ),

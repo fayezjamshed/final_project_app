@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,6 +45,7 @@ class ContactProvider extends ChangeNotifier {
 
   //   notifyListeners();
   // }
+
   deleteContact(int i) async {
     prefs = await SharedPreferences.getInstance();
     getContactList!.removeAt(i);

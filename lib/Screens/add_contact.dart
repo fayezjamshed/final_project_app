@@ -22,11 +22,14 @@ class _AddContactScreenState extends State<AddContactScreen> {
   void initState() {
     // TODO: implement initState
     initPrefs();
+    // Provider.of<ContactProvider>(context, listen: false).getContacts();
+
     super.initState();
   }
 
   void initPrefs() async {
     prefs = await SharedPreferences.getInstance();
+    prefs.setString("contacts", "[]");
     // Map<String, dynamic> contactJson = jsonDecode(prefs.getString("contacts")!);
     // contacts = await Contacts.fromJson(contactJson);
     // prefs = await SharedPreferences.getInstance();
@@ -40,13 +43,13 @@ class _AddContactScreenState extends State<AddContactScreen> {
   Widget build(BuildContext context) {
     return Consumer<ContactProvider>(
       builder: (context, contacts, child) => Column(
-        mainAxisAlignment: contacts.getContactList!.length == 0
+        mainAxisAlignment: contacts.getContactList?.length == 0
             ? MainAxisAlignment.center
             : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ListView.builder(
-              itemCount: contacts.getContactList!.length,
+              itemCount: contacts.getContactList?.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Card(
@@ -56,9 +59,9 @@ class _AddContactScreenState extends State<AddContactScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ListTile(
                       title: contacts
-                          .getContactList![index].name!.text.xl2.bold.white
+                          .getContactList?[index].name!.text.xl2.bold.white
                           .make(),
-                      subtitle: "+92 ${contacts.getContactList![index].phone}"
+                      subtitle: "+92 ${contacts.getContactList?[index].phone}"
                           .text
                           .xl
                           .white
